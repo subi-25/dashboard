@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Sales Dashboard</h2>
+
+<table id="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total Sales</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+fetch("/api/data")
+.then(res => res.json())
+.then(data => {
+    let rows = "";
+    data.forEach(item => {
+        rows += `
+        <tr>
+           <td>${item.product}</td>
+           <td>${item.quantity}</td>
+           <td>${item.total_sales}</td>
+
+        </tr>`;
+    });
+    document.querySelector("tbody").innerHTML = rows;
+});
+</script>
+
+</body>
+</html>
